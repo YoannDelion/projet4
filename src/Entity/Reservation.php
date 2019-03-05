@@ -11,6 +11,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Reservation
 {
+    const TYPE = [
+        0 => 'Journée',
+        1 => 'Demi-journée'
+    ];
+
     /**
      * @ORM\Id()
      * @ORM\GeneratedValue()
@@ -39,7 +44,7 @@ class Reservation
     private $dateReservation;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $dateVisite;
 

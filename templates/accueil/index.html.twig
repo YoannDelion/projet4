@@ -48,57 +48,17 @@
 
     <!-- Réserver -->
     <section class="callout" id="reserver">
-        <div class="container text-center">
+        <div class="container text-center" style="background-color: rgba(0,0,0, 0.5); color: #f4f4f4;">
             <h2 class="mx-auto mb-5">Welcome to
                 <em>your</em>
                 next website!</h2>
 
             <form class="form-horizontal">
-                <fieldset>
 
-                    <!-- Form Name -->
-                    <legend>Form Name</legend>
+                {{ include('forms/_reservation.html.twig') }}
 
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Text Input</label>
-                        <div class="col-md-4">
-                            <input id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md">
-                            <span class="help-block">help</span>
-                        </div>
-                    </div>
-
-                    <!-- Text input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="textinput">Text Input</label>
-                        <div class="col-md-4">
-                            <input id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md">
-                            <span class="help-block">help</span>
-                        </div>
-                    </div>
-
-                    <!-- Password input-->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="passwordinput">Password Input</label>
-                        <div class="col-md-4">
-                            <input id="passwordinput" name="passwordinput" type="password" placeholder="placeholder" class="form-control input-md">
-                            <span class="help-block">help</span>
-                        </div>
-                    </div>
-
-                    <!-- Button -->
-                    <div class="form-group">
-                        <label class="col-md-4 control-label" for="singlebutton">Single Button</label>
-                        <div class="col-md-4">
-                            <button id="singlebutton" name="singlebutton" class="btn btn-primary">Button</button>
-                        </div>
-                    </div>
-
-                </fieldset>
             </form>
 
-            <a class="btn btn-primary btn-xl" href="https://startbootstrap.com/template-overviews/stylish-portfolio/">Download
-                Now!</a>
         </div>
     </section>
 
