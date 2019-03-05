@@ -26,6 +26,11 @@ class Reservation
     /**
      * @ORM\Column(type="string", length=255)
      */
+    private $type;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
     private $mail;
 
     /**
@@ -62,6 +67,24 @@ class Reservation
     {
         $this->nombreBillets = $nombreBillets;
 
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param mixed $type
+     * @return Reservation
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
         return $this;
     }
 
