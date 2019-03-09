@@ -13,6 +13,13 @@ use App\Validator as CustomAssert;
  */
 class Reservation
 {
+
+    public function __construct()
+    {
+        $this->billets = new ArrayCollection();
+        $this->dateReservation = new \DateTime();
+    }
+
     const TYPE = [
         0 => 'Journée',
         1 => 'Demi-journée'
@@ -32,6 +39,8 @@ class Reservation
 
     /**
      * @ORM\Column(type="string", length=255)
+     *
+     * @CustomAssert\Type()
      */
     private $type;
 
@@ -56,11 +65,6 @@ class Reservation
      * @ORM\OneToMany(targetEntity="App\Entity\Billet", mappedBy="reservation", orphanRemoval=true)
      */
     private $billets;
-
-    public function __construct()
-    {
-        $this->billets = new ArrayCollection();
-    }
 
     public function getId(): ?int
     {
