@@ -15,14 +15,12 @@ class TypeValidator extends ConstraintValidator
         $dateVisite = $this->context->getObject()->getDateVisite();
         $dateVisite->setTime(14, 00);
 
-        dump($dateVisite);
-        dump($dateReservation);
-        dump($value);
-
         if ($value === 0) { //Si type = journée
-            if ($dateReservation > $dateVisite) {
-                $this->context->buildViolation($constraint->message)
-                    ->addViolation();
+            if ($dateReservation->format('d-m-Y') == $dateVisite->format('d-m-Y')) {
+                if ($dateReservation > $dateVisite) {
+                    $this->context->buildViolation($constraint->message)
+                        ->addViolation();
+                }
             }
         }
     }

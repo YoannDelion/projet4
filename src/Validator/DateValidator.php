@@ -18,6 +18,9 @@ class DateValidator extends ConstraintValidator
             return;
         }
 
+        $dateReservation = $this->context->getObject()->getDateReservation()->setTime(00, 00);;
+        $dateVisite = $value->setTime(00, 00);;
+
         $date = $value->format('d-m');
         $weekDay = date('l', $value->getTimestamp());
         $closed = [
@@ -25,6 +28,12 @@ class DateValidator extends ConstraintValidator
             '01-11',
             '25-12'
         ];
+
+        if ($dateReservation > $dateVisite) {
+            $this->context->buildViolation($constraint->passedDay)
+                ->addViolation();
+        }
+
         if ($weekDay === 'Sunday') {
             $this->context->buildViolation($constraint->sunday)
                 ->addViolation();

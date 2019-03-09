@@ -15,5 +15,6 @@ class Date extends Constraint
      */
     public $museumClosed = 'Le musée est fermé à la date sélectionnée.';
     public $sunday = 'Vous ne pouvez pas réserver de billet pour les dimanches.';
+    public $passedDay = 'Vous ne pouvez pas réserver de billet pour un jour déjà passé.';
 
 }
