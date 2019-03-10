@@ -19,32 +19,18 @@ class BilletRepository extends ServiceEntityRepository
         parent::__construct($registry, Billet::class);
     }
 
-    // /**
-    //  * @return Billet[] Returns an array of Billet objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @param \DateTime $dateVisite
+     * @return int
+     */
+    public function getNombreBillets(\DateTime $dateVisite) :int
     {
         return $this->createQueryBuilder('b')
-            ->andWhere('b.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('b.id', 'ASC')
-            ->setMaxResults(10)
+            ->select('count(b)')
+            ->andWhere('b.dateVisite = :dateVisite')
+            ->setParameter('dateVisite', $dateVisite)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getSingleScalarResult()
+            ;
     }
-    */
-
-    /*
-    public function findOneBySomeField($value): ?Billet
-    {
-        return $this->createQueryBuilder('b')
-            ->andWhere('b.exampleField = :val')
-            ->setParameter('val', $value)
-            ->getQuery()
-            ->getOneOrNullResult()
-        ;
-    }
-    */
 }

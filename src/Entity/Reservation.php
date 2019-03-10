@@ -34,6 +34,8 @@ class Reservation
 
     /**
      * @ORM\Column(type="integer")
+     *
+     * @CustomAssert\Nombre()
      */
     private $nombreBillets;
 

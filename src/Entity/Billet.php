@@ -22,7 +22,7 @@ class Billet
     private $tarif;
 
     /**
-     * @ORM\Column(type="datetime")
+     * @ORM\Column(type="date")
      */
     private $dateVisite;
 
