@@ -22,11 +22,6 @@ class Billet
     private $tarif;
 
     /**
-     * @ORM\Column(type="date")
-     */
-    private $dateVisite;
-
-    /**
      * @ORM\Column(type="string", length=255)
      */
     private $nom;
@@ -55,18 +50,6 @@ class Billet
     public function setTarif(string $tarif): self
     {
         $this->tarif = $tarif;
-
-        return $this;
-    }
-
-    public function getDateVisite(): ?\DateTimeInterface
-    {
-        return $this->dateVisite;
-    }
-
-    public function setDateVisite(\DateTimeInterface $dateVisite): self
-    {
-        $this->dateVisite = $dateVisite;
 
         return $this;
     }

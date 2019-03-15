@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AccueilController!{% endblock %}
+{% block title %}Musée du Louvres{% endblock %}
 
 {% block body %}
 
@@ -89,4 +89,35 @@
 
 {% endblock %}
 
-{% block javascripts %}{% endblock %}
+{% block javascripts %}
+
+    <script type="text/javascript">
+        $(function(){
+            console.log('Ready');
+
+            let $container = $('div#reservation_billets');
+            addBillet($container, $('#reservation_nombreBillets').val());
+
+            $('#reservation_nombreBillets').on('change', function () {
+                nbBillet = $(this).val();
+
+                addBillet($container, nbBillet);
+            });
+
+            function addBillet($container, nbBillet) {
+                $container.empty();
+                for (let i = 0; i < nbBillet; i++) {
+                    let template = $container.attr('data-prototype')
+                        .replace(/__name__label__/g, 'Billet n°' + (i+1))
+                        .replace(/__name__/g, i)
+                    ;
+
+                    let $prototype = $(template);
+
+                    $container.append($prototype);
+                }
+            }
+        });
+    </script>
+
+{% endblock %}
