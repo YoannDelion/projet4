@@ -390,6 +390,10 @@ a:hover, a:focus, a:active {
     background-color: #EB858B !important;
 }
 
+.bg-secondary {
+    background-color: #CFC6C9 !important;
+}
+
 .text-primary {
     color: #EB858B !important;
 }
@@ -400,8 +404,27 @@ a:hover, a:focus, a:active {
 
 .bg-light {
     background-color: #f4f4f4 !important;
+    color: #69626E;
 }
 
 .bg-dark {
     background-color: #69626E !important;
+    color: #F4F4F4;
+}
+
+.prices {
+    color: #69626E;
+    font-size: 4.5em;
+    padding: 20px 0 40px 0;
+}
+
+.prices span {
+    font-size: 22px;
+}
+
+.booking {
+    background-color: rgba(0,0,0, 0.5);
+    color: #f4f4f4;
+    padding: 50px;
+    border-radius: .25rem;
 }

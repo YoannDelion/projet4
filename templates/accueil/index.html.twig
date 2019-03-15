@@ -19,27 +19,29 @@
     <!-- Tarifs -->
     <section class="content-section bg-light" id="tarifs">
         <div class="container text-center">
+            <div class="content-section-heading text-center">
+                <h2 class="mb-5">Nos tarifs</h2>
+            </div>
             <div class="row">
                 <div class="col-lg-10 mx-auto">
-                    <h2>Nos Tarifs</h2>
                     <p class="lead mb-5">This theme features a flexible, UX friendly sidebar menu and stock photos from our
                         friends at
                         <a href="https://unsplash.com/">Unsplash</a>!</p>
                     <div class="row">
                         <div class="col-md-3 col-6">
-                            <div class="card" style="height:200px; background-color: #69626E; ">Normal</div>
+                            <div class="card bg-secondary prices">16€ <span>Normal</span></div>
                         </div>
                         <div class="col-md-3 col-6">
-                            <div class="card bg-primary" style="height:200px;  ">Enfant</div>
+                            <div class="card bg-primary prices">8€ <span>Enfant</span></div>
                         </div>
                         <div class="col-md-3 col-6">
-                            <div class="card" style="height:200px; background-color: #69626E; ">Sénior</div>
+                            <div class="card bg-secondary prices">12€ <span>Sénior</span></div>
                         </div>
                         <div class="col-md-3 col-6">
-                            <div class="card bg-primary" style="height:200px;  ">Réduit</div>
+                            <div class="card bg-primary prices">10€ <span>Réduit*</span></div>
                         </div>
                     </div>
-                    <a class="btn btn-dark btn-xl js-scroll-trigger mt-5" href="#services">Réserver</a>
+                    <a class="btn btn-dark btn-xl js-scroll-trigger mt-5" href="#reserver">Réserver</a>
                 </div>
             </div>
         </div>
@@ -47,31 +49,40 @@
 
 
     <!-- Réserver -->
-    <section class="callout" id="reserver">
-        <div class="container text-center" style="background-color: rgba(0,0,0, 0.5); color: #f4f4f4;">
-            <h2 class="mx-auto mb-5">Welcome to
-                <em>your</em>
-                next website!</h2>
-
-
-                {{ include('forms/_reservation.html.twig') }}
-
-
+    <section class="callout" >
+        <div class="container text-center booking" id="reserver">
+            <h2 class="mx-auto mb-5">Je réserve</h2>
+                <div class="">
+                    {{ include('forms/_reservation.html.twig') }}
+                </div>
         </div>
     </section>
 
     <!-- Infos -->
-    <section class="content-section" id="infos">
+    <section class="content-section bg-light" id="infos">
         <div class="container">
             <div class="content-section-heading text-center">
                 <h2 class="mb-5">Infos Pratiques</h2>
             </div>
             <div class="row">
-
-                <div class="col-4">Telephone</div>
-                <div class="col-4">Horaires</div>
-                <div class="col-4">Adresse</div>
-
+                <div class="col-4 text-center">
+                    <p class="h2 mb-5 text-primary"><i class="fas fa-phone"></i></p>
+                    <p>Information</p>
+                    <p>Information</p>
+                    <p>Information</p>
+                </div>
+                <div class="col-4 text-center">
+                    <p class="h2 mb-5 text-primary"><i class="fas fa-calendar-alt"></i></p>
+                    <p>Information</p>
+                    <p>Information</p>
+                    <p>Information</p>
+                </div>
+                <div class="col-4 text-center">
+                    <p class="h2 mb-5 text-primary"><i class="fas fa-map-marker-alt"></i></p>
+                    <p>Information</p>
+                    <p>Information</p>
+                    <p>Information</p>
+                </div>
             </div>
         </div>
     </section>

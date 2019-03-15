@@ -1,27 +1,37 @@
 {{ form_start(form) }}
-<div class="row">
-    <div class="form-group">
-        <div class="">
-            {{ form_row(form.type) }}
-        </div>
+
+<!-- Type input-->
+<div class="form-group">
+    {#<label class="col-md-4 mx-auto control-label" for="textinput">Text Input</label>#}
+    <div class="col-md-4 mx-auto control-label">
+        {{ form_label(form.type) }}
     </div>
-</div>
-<div class="row">
-    <div class="form-group">
-        <div class="">
-            {{ form_row(form.dateVisite) }}
-        </div>
-    </div>
-</div>
-<div class="row">
-    <div class="form-group">
-        <div class="">
-            {{ form_row(form.nombreBillets) }}
-        </div>
+    <div class="col-md-4 mx-auto">
+        {{ form_widget(form.type) }}
+        {#<input id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md">#}
     </div>
 </div>
 
-<button class="btn btn-primary btn-xl">Je réserve !</button>
+<!-- Date input-->
+<div class="form-group">
+    <div class="col-md-4 mx-auto control-label">
+        {{ form_label(form.dateVisite) }}
+    </div>
+    <div class="col-md-4 mx-auto">
+        {{ form_widget(form.dateVisite) }}
+    </div>
+</div>
+
+<!-- Nombre input-->
+<div class="form-group">
+    <div class="col-md-4 mx-auto control-label">
+        {{ form_label(form.nombreBillets) }}
+    </div>
+    <div class="col-md-4 mx-auto">
+        {{ form_widget(form.nombreBillets) }}
+    </div>
+</div>
 
 
+<button class="btn btn-primary btn-xl mt-5">Confirmer</button>
 {{ form_end(form) }}
