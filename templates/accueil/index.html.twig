@@ -93,8 +93,7 @@
 
     <script type="text/javascript">
         $(function(){
-            console.log('Ready');
-
+            //affichage des inputs en fonction du nombre de billets
             let $container = $('div#reservation_billets');
             addBillet($container, $('#reservation_nombreBillets').val());
 
@@ -116,6 +115,41 @@
 
                     $container.append($prototype);
                 }
+            }
+
+
+            //gestions des tabs du formulaire
+            let currentTab = 0;
+            showTab(currentTab);
+
+            $('#nextBtn').on('click', function (e) {
+                e.preventDefault();
+                nextPrev(1);
+            });
+
+            $('#prevBtn').on('click', function (e) {
+                e.preventDefault();
+                nextPrev(-1);
+            });
+
+            function showTab(tab) {
+                let tabs = $('.tab');
+                console.log(tab);
+                $(tabs[tab]).css('display', 'block');
+
+                if(tab == 0) {
+                    $('#prevBtn').css('display', 'none');
+                } else {
+                    $('#prevBtn').css('display', 'inline');
+                }
+            }
+
+            function nextPrev(n) {
+                let tabs = $('.tab');
+                $(tabs[currentTab]).css('display', 'none');
+
+                currentTab += n;
+                showTab(currentTab);
             }
         });
     </script>

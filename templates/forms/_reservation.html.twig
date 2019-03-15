@@ -1,37 +1,44 @@
 {{ form_start(form) }}
-
-<!-- Type input-->
-<div class="form-group">
-    {#<label class="col-md-4 mx-auto control-label" for="textinput">Text Input</label>#}
-    <div class="col-md-4 mx-auto control-label">
-        {{ form_label(form.type) }}
+<div class="tab">
+    <!-- Type input-->
+    <div class="form-group">
+        {#<label class="col-md-4 mx-auto control-label" for="textinput">Text Input</label>#}
+        <div class="col-md-4 mx-auto control-label">
+            {{ form_label(form.type) }}
+        </div>
+        <div class="col-md-4 mx-auto">
+            {{ form_widget(form.type) }}
+            {#<input id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md">#}
+        </div>
     </div>
-    <div class="col-md-4 mx-auto">
-        {{ form_widget(form.type) }}
-        {#<input id="textinput" name="textinput" type="text" placeholder="placeholder" class="form-control input-md">#}
+
+    <!-- Date input-->
+    <div class="form-group">
+        <div class="col-md-4 mx-auto control-label">
+            {{ form_label(form.dateVisite) }}
+        </div>
+        <div class="col-md-4 mx-auto">
+            {{ form_widget(form.dateVisite) }}
+        </div>
+    </div>
+
+    <!-- Nombre input-->
+    <div class="form-group">
+        <div class="col-md-4 mx-auto control-label">
+            {{ form_label(form.nombreBillets) }}
+        </div>
+        <div class="col-md-4 mx-auto">
+            {{ form_widget(form.nombreBillets) }}
+        </div>
     </div>
 </div>
-
-<!-- Date input-->
-<div class="form-group">
-    <div class="col-md-4 mx-auto control-label">
-        {{ form_label(form.dateVisite) }}
-    </div>
-    <div class="col-md-4 mx-auto">
-        {{ form_widget(form.dateVisite) }}
-    </div>
+<div class="tab">
+    {{ form_row(form.billets) }}
+</div>
+<div class="tab">
+    {{ form_row(form.mail) }}
 </div>
 
-<!-- Nombre input-->
-<div class="form-group">
-    <div class="col-md-4 mx-auto control-label">
-        {{ form_label(form.nombreBillets) }}
-    </div>
-    <div class="col-md-4 mx-auto">
-        {{ form_widget(form.nombreBillets) }}
-    </div>
-</div>
-
-
-<button class="btn btn-primary btn-xl mt-5">Confirmer</button>
+<button class="btn btn-primary btn-xl mt-5" id="prevBtn">Précédent</button>
+<button class="btn btn-primary btn-xl mt-5" id="nextBtn">Continuer</button>
 {{ form_end(form) }}

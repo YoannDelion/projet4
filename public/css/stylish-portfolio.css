@@ -428,3 +428,7 @@ a:hover, a:focus, a:active {
     padding: 50px;
     border-radius: .25rem;
 }
+
+.tab {
+    display: none;
+}
