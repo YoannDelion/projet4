@@ -64,7 +64,7 @@ class Reservation
     private $dateVisite;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Billet", mappedBy="reservation", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Billet", mappedBy="reservation", orphanRemoval=true, cascade={"persist"})
      */
     private $billets;
 

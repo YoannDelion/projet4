@@ -19,6 +19,17 @@ class ReservationRepository extends ServiceEntityRepository
         parent::__construct($registry, Reservation::class);
     }
 
+    public function getNombreBillets(\DateTime $dateVisite) :?int
+    {
+        return $this->createQueryBuilder('r')
+            ->select('sum(r.nombreBillets)')
+            ->andWhere('r.dateVisite = :dateVisite')
+            ->setParameter('dateVisite', $dateVisite)
+            ->getQuery()
+            ->getSingleScalarResult()
+            ;
+    }
+
     // /**
     //  * @return Reservation[] Returns an array of Reservation objects
     //  */

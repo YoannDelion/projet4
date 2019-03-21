@@ -7,6 +7,11 @@
     <!-- Header -->
     <header class="masthead d-flex">
         <div class="container text-center my-auto">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success text-center">
+                    <b>{{ message }}</b>
+                </div>
+            {% endfor %}
             <h1 class="mb-1">Stylish Portfolio</h1>
             <h3 class="mb-5">
                 <em>A Free Bootstrap Theme by Start Bootstrap</em>
@@ -135,9 +140,16 @@
             function showTab(tab) {
                 let tabs = $('.tab');
                 console.log(tab);
+                console.log(tabs.length);
                 $(tabs[tab]).css('display', 'block');
 
-                if(tab == 0) {
+                if(tab == (tabs.length-1)) {
+                    $('#prevBtn').css('display', 'none');
+                    $('#nextBtn').css('display', 'none');
+                    $('#reservation_mail').after(
+                        "<button class='btn btn-primary'>Réserver</button>"
+                    );
+                } else if(tab == 0) {
                     $('#prevBtn').css('display', 'none');
                 } else {
                     $('#prevBtn').css('display', 'inline');
