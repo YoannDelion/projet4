@@ -31,7 +31,9 @@ class ReservationType extends AbstractType
             ->add('billets', CollectionType::class, [
                 'entry_type' => BilletType::class,
                 'allow_add' => true,
-                'allow_delete' => true
+                'allow_delete' => true,
+                'prototype' => true,
+                'by_reference' => false
             ]);
     }
 
@@ -55,8 +57,8 @@ class ReservationType extends AbstractType
     public function getNumbers()
     {
         $output = [];
-        for($i = 1; $i < 11; $i++) {
-           $output[$i] = $i;
+        for ($i = 1; $i < 11; $i++) {
+            $output[$i] = $i;
         }
         return $output;
     }

@@ -38,7 +38,6 @@ class AccueilController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            dump($reservation);exit();
             $this->objectManager->persist($reservation);
             $this->objectManager->flush();
             $this->addFlash('success', 'Votre réservation a bien été enregistrée ! Vous allez recevoir un mail de confirmation.');
