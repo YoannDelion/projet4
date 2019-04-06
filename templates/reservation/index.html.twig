@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre réservation - Musée du Louvres{% endblock %}
+
+{% block body %}
+    <header class="reservation-header">
+        <div class="container text-center my-auto">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success text-center">
+                    <b>{{ message }}</b>
+                </div>
+            {% endfor %}
+            <h1 class="mb-1">Stylish Portfolio</h1>
+            <h3 class="mb-5">
+                <em>Réservation</em>
+            </h3>
+        </div>
+    </header>
+    <section class="container">
+        <div class="content-section">
+            <div class="container text-center">
+                <div class="content-section-heading text-center">
+                    <h2 class="mb-5">Vos Billets</h2>
+                </div>
+                <div class="row">
+                    This friendly message is coming from:
+                    <ul>
+                        <li>Your controller at <code><a
+                                        href="{{ 'C:/wamp64/www/projet4/src/Controller/ReservationController.php'|file_link(0) }}">src/Controller/ReservationController.php</a></code>
+                        </li>
+                        <li>Your template at <code><a
+                                        href="{{ 'C:/wamp64/www/projet4/templates/reservation/index.html.twig'|file_link(0) }}">templates/reservation/index.html.twig</a></code>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+    </section>
+{% endblock %}

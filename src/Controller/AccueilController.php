@@ -8,6 +8,7 @@ use App\Repository\ReservationRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 
 class AccueilController extends AbstractController
@@ -30,18 +31,20 @@ class AccueilController extends AbstractController
 
     /**
      * @Route("/", name="accueil")
+     * @param Request $request
+     * @param Session $session
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      */
-    public function index(Request $request)
+    public function index(Request $request, Session $session)
     {
         $reservation = new Reservation();
         $form = $this->createForm(ReservationType::class, $reservation);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->objectManager->persist($reservation);
-            $this->objectManager->flush();
-            $this->addFlash('success', 'Votre réservation a bien été enregistrée ! Vous allez recevoir un mail de confirmation.');
-            return $this->redirectToRoute('accueil');
+            $session->set('reservation', $reservation);
+
+            return $this->redirectToRoute('reservation');
         }
         return $this->render('accueil/index.html.twig', [
             'form' => $form->createView(),

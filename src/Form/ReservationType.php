@@ -22,7 +22,6 @@ class ReservationType extends AbstractType
             ->add('type', ChoiceType::class, [
                 'choices' => $this->getTypes()
             ])
-            ->add('mail')
             ->add('dateVisite', DateType::class, [
                 'widget' => 'single_text',
 //                'html5' => false,

@@ -19,11 +19,6 @@ class Billet
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $tarif;
-
-    /**
-     * @ORM\Column(type="string", length=255)
-     */
     private $nom;
 
     /**
@@ -37,21 +32,24 @@ class Billet
      */
     private $reservation;
 
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $dateNaissance;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $reduction;
+
+    /**
+     * @ORM\Column(type="smallint")
+     */
+    private $tarif;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getTarif(): ?string
-    {
-        return $this->tarif;
-    }
-
-    public function setTarif(string $tarif): self
-    {
-        $this->tarif = $tarif;
-
-        return $this;
     }
 
     public function getNom(): ?string
@@ -86,6 +84,42 @@ class Billet
     public function setReservation(?Reservation $reservation): self
     {
         $this->reservation = $reservation;
+
+        return $this;
+    }
+
+    public function getDateNaissance(): ?\DateTimeInterface
+    {
+        return $this->dateNaissance;
+    }
+
+    public function setDateNaissance(\DateTimeInterface $dateNaissance): self
+    {
+        $this->dateNaissance = $dateNaissance;
+
+        return $this;
+    }
+
+    public function getReduction(): ?bool
+    {
+        return $this->reduction;
+    }
+
+    public function setReduction(bool $reduction): self
+    {
+        $this->reduction = $reduction;
+
+        return $this;
+    }
+
+    public function getTarif(): ?int
+    {
+        return $this->tarif;
+    }
+
+    public function setTarif(int $tarif): self
+    {
+        $this->tarif = $tarif;
 
         return $this;
     }

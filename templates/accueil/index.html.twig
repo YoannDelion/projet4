@@ -29,7 +29,8 @@
             </div>
             <div class="row">
                 <div class="col-lg-10 mx-auto">
-                    <p class="lead mb-5">This theme features a flexible, UX friendly sidebar menu and stock photos from our
+                    <p class="lead mb-5">This theme features a flexible, UX friendly sidebar menu and stock photos from
+                        our
                         friends at
                         <a href="https://unsplash.com/">Unsplash</a>!</p>
                     <div class="row">
@@ -54,12 +55,12 @@
 
 
     <!-- Réserver -->
-    <section class="callout" >
+    <section class="callout">
         <div class="container text-center booking" id="reserver">
             <h2 class="mx-auto mb-5">Je réserve</h2>
-                <div class="">
-                    {{ include('forms/_reservation.html.twig') }}
-                </div>
+            <div class="">
+                {{ include('forms/_reservation.html.twig') }}
+            </div>
         </div>
     </section>
 
@@ -97,14 +98,13 @@
 {% block javascripts %}
 
     <script type="text/javascript">
-        $(function(){
+        $(function () {
             //affichage des inputs en fonction du nombre de billets
             let $container = $('div#reservation_billets');
             addBillet($container, $('#reservation_nombreBillets').val());
 
             $('#reservation_nombreBillets').on('change', function () {
-                nbBillet = $(this).val();
-
+                let nbBillet = $(this).val();
                 addBillet($container, nbBillet);
             });
 
@@ -112,7 +112,7 @@
                 $container.empty();
                 for (let i = 0; i < nbBillet; i++) {
                     let template = $container.attr('data-prototype')
-                        .replace(/__name__label__/g, 'Billet n°' + (i+1))
+                        .replace(/__name__label__/g, 'Billet n°' + (i + 1))
                         .replace(/__name__/g, i)
                     ;
 
@@ -122,7 +122,6 @@
                 }
             }
 
-
             //gestions des tabs du formulaire
             let currentTab = 0;
             showTab(currentTab);
@@ -131,7 +130,6 @@
                 e.preventDefault();
                 nextPrev(1);
             });
-
             $('#prevBtn').on('click', function (e) {
                 e.preventDefault();
                 nextPrev(-1);
@@ -139,16 +137,16 @@
 
             function showTab(tab) {
                 let tabs = $('.tab');
-                console.log(tab);
-                console.log(tabs.length);
                 $(tabs[tab]).css('display', 'block');
 
-                if(tab == (tabs.length-1)) {
-                    $('#prevBtn').css('display', 'none');
+                if (tab === (tabs.length - 1)) {
                     $('#nextBtn').css('display', 'none');
-                } else if(tab == 0) {
+                    $('#prevBtn').css('display', 'inline');
+                } else if (tab === 0) {
                     $('#prevBtn').css('display', 'none');
+                    $('#nextBtn').css('display', 'inline');
                 } else {
+                    $('#nextBtn').css('display', 'inline');
                     $('#prevBtn').css('display', 'inline');
                 }
             }
@@ -160,7 +158,29 @@
                 currentTab += n;
                 showTab(currentTab);
             }
-        });
+
+            function calculate_age(naissance) {
+                var diff_ms = Date.now() - naissance;
+                var age_dt = new Date(diff_ms);
+
+                return Math.abs(age_dt.getUTCFullYear() - 1970);
+            }
+
+            //Desactivation du bouton réduction si -12 ans
+            $("body").delegate('.dateNaissance', "change", function () {
+                let dateNaissance = new Date($(this).val());
+                let age = calculate_age(dateNaissance);
+
+                if (age < 12) {
+                    console.log('-12 ans');
+                    console.log($(this).parent().parent().parent().find('.reduction').val());
+                    $(this).parent().parent().parent().find('.reduction').attr('disabled', true);
+                } else {
+                    $(this).parent().parent().parent().find('.reduction').attr('disabled', false);
+                }
+            });
+        })
+        ;
     </script>
 
 {% endblock %}
