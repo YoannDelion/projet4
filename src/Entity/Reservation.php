@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -17,7 +18,7 @@ class Reservation
     public function __construct()
     {
         $this->billets = new ArrayCollection();
-        $this->dateReservation = new \DateTime();
+        $this->dateReservation = new DateTime();
     }
 
     const TYPE = [
