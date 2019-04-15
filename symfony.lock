@@ -147,6 +147,9 @@
             "./config/packages/sensio_framework_extra.yaml"
         ]
     },
+    "stripe/stripe-php": {
+        "version": "v6.31.5"
+    },
     "swiftmailer/swiftmailer": {
         "version": "v6.1.3"
     },

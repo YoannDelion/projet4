@@ -5,10 +5,12 @@
 {% block body %}
     <header class="reservation-header">
         <div class="container text-center my-auto">
-            {% for message in app.flashes('success') %}
-                <div class="alert alert-success text-center">
-                    <b>{{ message }}</b>
-                </div>
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }} text-center">
+                        <b>{{ message }}</b>
+                    </div>
+                {% endfor %}
             {% endfor %}
             <h1 class="mb-1">Stylish Portfolio</h1>
             <h3 class="mb-5">
@@ -21,9 +23,6 @@
             <div class="row">
                 <div class="col-md-4 col-12">
                     <div class="container text-center">
-                        <div class="text-center">
-                            <p class="h2"><b>Coût total : {{ total }}€</b></p>
-                        </div>
                         <div class="text-center mt-4">
                             <h2>Vos Billets</h2>
                         </div>
@@ -43,10 +42,25 @@
                             <h2>Finaliser la réservation</h2>
                         </div>
                         <div class="row">
-                            {{ form_start(form) }}
-                            {{ form_rest(form) }}
-                            <button class="btn btn-primary">Valider</button>
-                            {{ form_end(form) }}
+                            <div class="col-12">
+                                <p class="h2">Coût total : {{ total }}€</p>
+                            </div>
+                            <div class="col-12">
+                                <form action="{{ path('reservation') }}" method="POST">
+                                    <script
+                                            src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                                            data-key="pk_test_TYooMQauvdEDq54NiTphI7jx"
+                                            data-amount="{{ total * 100 }}"
+                                            data-currency="EUR"
+                                            data-name="Musée du Louvres"
+                                            data-description="Paiement de votre réservation"
+                                            data-image="https://stripe.com/img/documentation/checkout/marketplace.png"
+                                            data-locale="fr"
+                                            data-label="Procéder au paiement"
+                                            data-allow-remember-me="false">
+                                    </script>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>

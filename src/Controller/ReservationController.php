@@ -3,7 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\RequestStatus;
+use App\Entity\Reservation;
 use App\Service\CalculTarif;
+use App\Service\StripeService;
 use Doctrine\Common\Persistence\ObjectManager;
 use Exception;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -26,10 +28,16 @@ class ReservationController extends AbstractController
      */
     private $objectManager;
 
-    public function __construct(CalculTarif $calculTarif, ObjectManager $objectManager)
+    /**
+     * @var StripeService
+     */
+    private $stripeService;
+
+    public function __construct(CalculTarif $calculTarif, ObjectManager $objectManager, StripeService $stripeService)
     {
         $this->calculTarif = $calculTarif;
         $this->objectManager = $objectManager;
+        $this->stripeService = $stripeService;
     }
 
     /**
@@ -44,23 +52,27 @@ class ReservationController extends AbstractController
         if ($session->get('reservation') == null) {
             return $this->redirectToRoute('accueil');
         }
-        $reservation =  $session->get('reservation');
+        $reservation = $session->get('reservation');
         $total = $this->calculTarif->calculTarif($reservation);
-        $session->set('reservation', $reservation);
 
-        $form = $this->createFormBuilder($reservation)
-            ->add('mail', EmailType::class)
-            ->getForm();
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            //envoie mail
+        if ($request->get('stripeEmail')) {
+            $reservation->setMail($request->request->get('stripeEmail'));
+            $payment = $this->stripeService->checkPayment($total, $request->get('stripeToken'));
+            if ($payment == true) {
+                $this->objectManager->persist($reservation);
+                $this->objectManager->flush();
+                $session->clear();
+                $this->addFlash('success', 'Votre paiement a bien été effectué, vous allez recevoir un mail de confirmation.');
+                return $this->redirectToRoute('accueil');
+            } else {
+                $this->addFlash('error', 'Une erreur est survenue, merci de réessayer.');
+            }
         }
 
+        $session->set('reservation', $reservation);
         return $this->render('reservation/index.html.twig', [
             'reservation' => $reservation,
-            'total' => $total,
-            'form' => $form->createView()
+            'total' => $total
         ]);
     }
 }
