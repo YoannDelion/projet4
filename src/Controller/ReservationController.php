@@ -8,6 +8,8 @@ use App\Service\CalculTarif;
 use App\Service\StripeService;
 use Doctrine\Common\Persistence\ObjectManager;
 use Exception;
+use Swift_Mailer;
+use Swift_Message;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -44,10 +46,11 @@ class ReservationController extends AbstractController
      * @Route("/reservation", name="reservation")
      * @param Session $session
      * @param Request $request
+     * @param Swift_Mailer $mailer
      * @return Response
      * @throws Exception
      */
-    public function index(Session $session, Request $request)
+    public function index(Session $session, Request $request, Swift_Mailer $mailer)
     {
         if ($session->get('reservation') == null) {
             return $this->redirectToRoute('accueil');
@@ -62,6 +65,18 @@ class ReservationController extends AbstractController
                 $this->objectManager->persist($reservation);
                 $this->objectManager->flush();
                 $session->clear();
+
+                $message = (new Swift_Message('Confirmation de commande - Musée du Louvres'))
+                    ->setFrom('noreply@museedulouvres.com')
+                    ->setTo($reservation->getMail())
+                    ->setBody(
+                        $this->renderView('mail/confirmation.html.twig', [
+                            'reservation' => $reservation,
+                        ]),
+                        'text/html'
+                    );
+                    $mailer->send($message);
+
                 $this->addFlash('success', 'Votre paiement a bien été effectué, vous allez recevoir un mail de confirmation.');
                 return $this->redirectToRoute('accueil');
             } else {
