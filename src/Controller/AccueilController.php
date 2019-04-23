@@ -7,7 +7,9 @@ use App\Form\ReservationType;
 use App\Repository\ReservationRepository;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Routing\Annotation\Route;
 
@@ -33,7 +35,7 @@ class AccueilController extends AbstractController
      * @Route("/", name="accueil")
      * @param Request $request
      * @param Session $session
-     * @return \Symfony\Component\HttpFoundation\RedirectResponse|\Symfony\Component\HttpFoundation\Response
+     * @return RedirectResponse|Response
      */
     public function index(Request $request, Session $session)
     {
