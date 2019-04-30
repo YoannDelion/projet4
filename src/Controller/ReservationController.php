@@ -62,9 +62,10 @@ class ReservationController extends AbstractController
             $reservation->setMail($request->request->get('stripeEmail'));
             $payment = $this->stripeService->checkPayment($total, $request->get('stripeToken'));
             if ($payment == true) {
+                $session->set("paiement", true);
+
                 $this->objectManager->persist($reservation);
                 $this->objectManager->flush();
-                $session->clear();
 
                 $message = (new Swift_Message('Confirmation de commande - Musée du Louvres'))
                     ->setFrom('noreply@museedulouvres.com')
@@ -78,7 +79,7 @@ class ReservationController extends AbstractController
                     $mailer->send($message);
 
                 $this->addFlash('success', 'Votre paiement a bien été effectué, vous allez recevoir un mail de confirmation.');
-                return $this->redirectToRoute('accueil');
+                return $this->redirectToRoute('confirmation');
             } else {
                 $this->addFlash('error', 'Une erreur est survenue, merci de réessayer.');
             }

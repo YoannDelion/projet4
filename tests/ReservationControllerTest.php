@@ -9,7 +9,7 @@ use Symfony\Component\HttpFoundation\Session\Storage\MockFileSessionStorage;
 
 class ReservationControllerTest extends WebTestCase
 {
-    public function testPageReservation()
+    public function testPageReservationRedirection()
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/reservation');
@@ -18,7 +18,7 @@ class ReservationControllerTest extends WebTestCase
         $this->assertSame(1, $crawler->filter('html:contains("Musée du Louvres")')->count());
     }
 
-    public function testPageReservationRedirection()
+    public function testPageReservation()
     {
         $session = new Session(new MockFileSessionStorage());
         $session->set('reservation', new Reservation());
@@ -31,5 +31,4 @@ class ReservationControllerTest extends WebTestCase
         $this->assertSame(1, $crawler->filter('html:contains("Réservation")')->count());
     }
 
-    //ajouter test calcul tarif
 }
