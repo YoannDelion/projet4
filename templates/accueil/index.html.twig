@@ -27,16 +27,20 @@
 
                     <div class="row">
                         <div class="col-md-3 col-6">
-                            <div class="card bg-secondary prices">16€ <span>Normal</span><span><i>Dès 12 ans</i></span></div>
+                            <div class="card bg-secondary prices">16€ <span>Normal</span><span><i>Dès 12 ans</i></span>
+                            </div>
                         </div>
                         <div class="col-md-3 col-6">
-                            <div class="card bg-primary prices">8€ <span>Enfant</span><span><i>Dès 4 ans</i></span></div>
+                            <div class="card bg-primary prices">8€ <span>Enfant</span><span><i>Dès 4 ans</i></span>
+                            </div>
                         </div>
                         <div class="col-md-3 col-6">
-                            <div class="card bg-secondary prices">12€ <span>Sénior</span><span><i>Dès 60 ans</i></span></div>
+                            <div class="card bg-secondary prices">12€ <span>Sénior</span><span><i>Dès 60 ans</i></span>
+                            </div>
                         </div>
                         <div class="col-md-3 col-6">
-                            <div class="card bg-primary prices">10€ <span>Réduit</span><span><i>Justificatif demandé</i></span></div>
+                            <div class="card bg-primary prices">10€ <span>Réduit</span><span><i>Justificatif demandé</i></span>
+                            </div>
                         </div>
                     </div>
                     <a class="btn btn-dark btn-xl js-scroll-trigger mt-5" href="#reserver">Réserver</a>
@@ -122,22 +126,15 @@
                 e.preventDefault();
 
                 let selectedDate = new Date($('#reservation_dateVisite').val());
-                // let fermetures = ['5-1', '11-1', '12-25'];
+                let selectedDay = (selectedDate.getMonth() + 1) + '-' + selectedDate.getDate();
+                let fermetures = ['5-1', '11-1', '12-25'];
 
-                //si mardi ou dimanche
-                if ((selectedDate.getDay() === 2) || (selectedDate.getDay() === 0)) {
+                //si mardi, dimanche ou ferié
+                if ((selectedDate.getDay() === 2) || (selectedDate.getDay() === 0) || (selectedDate < new Date()) || (fermetures.indexOf(selectedDay) >= 0)) {
                     $('#reservation_dateVisite').after('<div class="alert alert-danger">Vous ne pouvez pas réserver de billet pour le jour sélectionné</div>');
-                    $('.alert-danger').delay( 2000 ).slideUp('slow');
+                    $('.alert-danger').delay(2000).slideUp('slow');
 
-                }
-                // else if ( fermetures.indexOf(selectedDate.getMonth()+'-'+selectedDate.getDate()) >= 0 ) {
-                //
-                //     alert(selectedDate.getMonth()+1+'-'+selectedDate.getDate());
-                //
-                //     $('#reservation_dateVisite').after('<div class="alert alert-danger">Le musée est fermé le jour selectionné</div>');
-                //     $('.alert-danger').delay( 2000 ).slideUp('slow');
-                // }
-                else {
+                } else {
                     nextPrev(1);
                 }
             });
