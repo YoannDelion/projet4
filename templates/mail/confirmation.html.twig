@@ -297,7 +297,7 @@
                                             <td align="center"
                                                 style="font-size:0px;padding:10px 25px;word-break:break-word;">
                                                 <div style="font-family:Lato, Helvetica, Arial, sans-serif;font-size:25px;line-height:1;text-align:center;color:#69626E;">
-                                                    <strong>Confirmation de commande
+                                                    <strong>Confirmation de commande {{ reservation.token }}
                                                     </strong></div>
                                             </td>
                                         </tr>
@@ -316,7 +316,7 @@
                                                     style="font-size:0px;padding:10px 30px;word-break:break-word;">
                                                     <div style="font-family:Lato, Helvetica, Arial, sans-serif;font-size:18px;line-height:1;text-align:center;color:#69626E;">
                                                         {{ billet.nom }} {{ billet.prenom }} - {{ billet.tarif }}€
-                                                        {% if billet.reduction is true %}
+                                                        {% if billet.reduction %}
                                                             <br><i>Pensez à prendre un justificatif</i>
                                                         {% endif %}
                                                     </div>

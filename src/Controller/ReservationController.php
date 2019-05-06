@@ -78,7 +78,6 @@ class ReservationController extends AbstractController
                     );
                     $mailer->send($message);
 
-                $this->addFlash('success', 'Votre paiement a bien été effectué, vous allez recevoir un mail de confirmation.');
                 return $this->redirectToRoute('confirmation');
             } else {
                 $this->addFlash('error', 'Une erreur est survenue, merci de réessayer.');

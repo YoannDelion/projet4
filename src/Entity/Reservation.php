@@ -6,11 +6,13 @@ use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 use App\Validator as CustomAssert;
 
 /**
  * @ORM\Entity(repositoryClass="App\Repository\ReservationRepository")
+ * @UniqueEntity("token")
  */
 class Reservation
 {
@@ -19,6 +21,7 @@ class Reservation
     {
         $this->billets = new ArrayCollection();
         $this->dateReservation = new DateTime();
+        $this->token = substr(sha1(random_bytes(10)), 0, 10);
     }
 
     const TYPE = [
@@ -68,6 +71,11 @@ class Reservation
      * @ORM\OneToMany(targetEntity="App\Entity\Billet", mappedBy="reservation", orphanRemoval=true, cascade={"persist"})
      */
     private $billets;
+
+    /**
+     * @ORM\Column(type="string", length=10, unique=true)
+     */
+    private $token;
 
     public function getId(): ?int
     {
@@ -167,6 +175,18 @@ class Reservation
                 $billet->setReservation(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getToken(): ?string
+    {
+        return $this->token;
+    }
+
+    public function setToken(string $token): self
+    {
+        $this->token = $token;
 
         return $this;
     }

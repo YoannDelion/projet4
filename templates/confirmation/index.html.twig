@@ -5,13 +5,6 @@
 {% block body %}
     <header class="reservation-header">
         <div class="container text-center my-auto">
-            {% for label, messages in app.flashes %}
-                {% for message in messages %}
-                    <div class="alert alert-{{ label }} text-center">
-                        <b>{{ message }}</b>
-                    </div>
-                {% endfor %}
-            {% endfor %}
             <h1 class="mb-1">Musée du Louvres</h1>
             <h3 class="mb-5">
                 <em>Confirmation de réservation</em>
@@ -23,22 +16,25 @@
             <div class="row">
                 <div class="col-12">
                     <div class="container text-center">
-                        <div class="text-center mt-4">
+                        <div class="mt-4">
                             <h2>Vos Billets</h2>
                         </div>
-                        <div class="row">
-                            <p>Nous vous confirmons le paiement de votre réservation pour les billets suivants :</p>
-                            <ul>
-                                {% for billet in reservation.billets %}
-                                    <li>{{ billet.nom ~ ' ' ~ billet.prenom }} — Tarif : <b>{{ billet.tarif }}€</b></li>
-                                {% endfor %}
-                            </ul>
-                            <p>Vous allez également recevoir un mail de confirmation faisaint guise de d'entrée pour le musée.</p>
-                            <p><em>Le cas échéant, pensez à vos justificatifs de tarif réduit, ils vous seront demandé !</em></p>
+                        <div class="row ">
+                            <div class="col-12 text-center">
+                                <p>Nous vous confirmons le paiement de votre réservation pour les billets suivants :</p>
+                                <ul>
+                                    {% for billet in reservation.billets %}
+                                        <li style="list-style: none">{{ billet.nom ~ ' ' ~ billet.prenom }} — Tarif : <b>{{ billet.tarif }}€</b></li>
+                                    {% endfor %}
+                                </ul>
+                                <p>Vous allez également recevoir un mail de confirmation faisaint guise de d'entrée pour
+                                    le musée.</p>
+                                <p><em>Le cas échéant, pensez à vos justificatifs de tarif réduit, ils vous seront
+                                        demandé !</em></p>
+                            </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
