@@ -24,8 +24,7 @@ class ReservationType extends AbstractType
             ])
             ->add('dateVisite', DateType::class, [
                 'widget' => 'single_text',
-//                'html5' => false,
-//                'attr' => ['class' => 'js-datepicker'],
+                'attr' => ['min' => date('Y-m-d')],
             ])
             ->add('billets', CollectionType::class, [
                 'entry_type' => BilletType::class,

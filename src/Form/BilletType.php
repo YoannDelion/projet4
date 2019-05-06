@@ -19,7 +19,7 @@ class BilletType extends AbstractType
             ->add('prenom', TextType::class)
             ->add('dateNaissance', DateType::class, [
                 'widget' => 'single_text',
-                'attr' => ['class' => 'dateNaissance'],
+                'attr' => ['max' => date('Y-m-d')]
             ])
             ->add('reduction', CheckboxType::class, [
                 'label'    => 'Avez vous une réduction ?',

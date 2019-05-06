@@ -120,7 +120,26 @@
 
             $('#nextBtn').on('click', function (e) {
                 e.preventDefault();
-                nextPrev(1);
+
+                let selectedDate = new Date($('#reservation_dateVisite').val());
+                // let fermetures = ['5-1', '11-1', '12-25'];
+
+                //si mardi ou dimanche
+                if ((selectedDate.getDay() === 2) || (selectedDate.getDay() === 0)) {
+                    $('#reservation_dateVisite').after('<div class="alert alert-danger">Vous ne pouvez pas réserver de billet pour le jour sélectionné</div>');
+                    $('.alert-danger').delay( 2000 ).slideUp('slow');
+
+                }
+                // else if ( fermetures.indexOf(selectedDate.getMonth()+'-'+selectedDate.getDate()) >= 0 ) {
+                //
+                //     alert(selectedDate.getMonth()+1+'-'+selectedDate.getDate());
+                //
+                //     $('#reservation_dateVisite').after('<div class="alert alert-danger">Le musée est fermé le jour selectionné</div>');
+                //     $('.alert-danger').delay( 2000 ).slideUp('slow');
+                // }
+                else {
+                    nextPrev(1);
+                }
             });
             $('#prevBtn').on('click', function (e) {
                 e.preventDefault();
