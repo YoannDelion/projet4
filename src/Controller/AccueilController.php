@@ -53,4 +53,13 @@ class AccueilController extends AbstractController
         ]);
     }
 
+    /**
+     * @Route("/mentions-legales", name="mentionsLegales")
+     * @return Response
+     */
+    public function mentionsLegales()
+    {
+        return $this->render('accueil/mentionsLegales.html.twig');
+    }
+
 }
