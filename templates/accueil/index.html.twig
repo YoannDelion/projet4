@@ -130,7 +130,7 @@
                 let fermetures = ['5-1', '11-1', '12-25'];
 
                 //si mardi, dimanche ou ferié
-                if ((selectedDate.getDay() === 2) || (selectedDate.getDay() === 0) || (selectedDate < new Date()) || (fermetures.indexOf(selectedDay) >= 0)) {
+                if ( (selectedDate == 'Invalid Date') || (selectedDate.getDay() === 2) || (selectedDate.getDay() === 0) || (selectedDate < new Date()) || (fermetures.indexOf(selectedDay) >= 0)) {
                     $('#reservation_dateVisite').after('<div class="alert alert-danger">Vous ne pouvez pas réserver de billet pour le jour sélectionné</div>');
                     $('.alert-danger').delay(2000).slideUp('slow');
 
