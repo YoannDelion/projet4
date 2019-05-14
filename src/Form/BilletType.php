@@ -27,7 +27,10 @@ class BilletType extends AbstractType
                 'help' => 'Attention, un justificatif vous serez demandé à l\'entrée du musée',
                 'attr' => [
                     'class' => 'reduction'
-                    ]
+                    ],
+                'help_attr' => [
+                    'style' => "color:white !important"
+                ]
             ]);
     }
 
